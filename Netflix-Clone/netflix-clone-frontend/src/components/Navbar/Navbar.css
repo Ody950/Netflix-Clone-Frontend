@@ -1,0 +1,11 @@
+.nav1 {
+
+  list-style-type: none;
+  overflow: hidden;
+  display: flex;
+  padding: 8px 100px 50px;
+  color: #537FE7;
+  font-size: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+}
