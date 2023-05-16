@@ -10,18 +10,19 @@ import { useEffect, useState } from 'react';
 function ModalMovie(props) {
   const [note, setNote] = useState('');
   const [clickedMeme, setClickedMeme] = useState(props.clickedMeme);
-  const [showButton, setShowButton] = useState(false);
 
   const addToFav = (item) =>{
     const modifiedItem = {...item, note: note};
-    const serverURL = `http://localhost:3017/addToFav`;
+    const serverURL = `http://localhost:3023/addToFav`;
     axios.post(serverURL , modifiedItem)
     .then(response=>{
       console.log(response.data)
+      
     })
     .catch((error)=>{
       console.log(error)
     })
+  props.handleClose()
   }
 
   const path = 'https://image.tmdb.org/t/p/w500';
@@ -44,13 +45,8 @@ function ModalMovie(props) {
             <input type="text" id="addANote" className="form-control" placeholder="Type comment..." onChange={(e) => setNote(e.target.value)} />
           </div>
 
-          {!showButton && (
-            <Button variant="primary" onClick={()=>{setShowButton(true)}}>Apply Changes</Button>
-          )}
+             <Button variant="primary" onClick={()=>{addToFav(props.item)}}>Add to Favorite</Button>
 
-          {showButton && (
-            <Button variant="primary" onClick={()=>{addToFav(props.item)}}>Add to Favorite</Button>
-          )}
         </Modal.Footer>
       </Modal>
     </>
